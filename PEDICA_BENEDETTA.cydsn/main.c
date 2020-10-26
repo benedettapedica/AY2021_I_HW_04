@@ -26,8 +26,6 @@ int main(void)
     PacketReadyFlag = 0;
     ADC_DelSig_StartConvert();
     Clock_PWM_Start();
-    
-    AMux_FastSelect(0);
 
     for(;;)
     {
@@ -35,15 +33,7 @@ int main(void)
         {
             UART_PutString(DataBuffer);
             PacketReadyFlag = 0;
-            
-            if(Led_level !=0) 
-            {            
-              PWM_Red_Led_Stop(); 
-            }
-            else    
-            {
-              PWM_Red_Led_Start(); 
-            }
+                        
         }
     }
 }

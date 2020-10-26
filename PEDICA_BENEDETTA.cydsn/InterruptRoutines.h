@@ -14,8 +14,8 @@
 
     #include "cytypes.h"
     #include "stdio.h"
-
-    #define BUFFER_SIZE 16 
+    #define BYTE_TO_SEND 4
+    #define BUFFER_SIZE 1+BYTE_TO_SEND+1
     
     uint8 Led_level;
     
