@@ -14,8 +14,9 @@
 
 #define ON 1
 #define OFF 0
+#define THRESHOLD 2000 //we choose a brightness treshold
 
-int32 value_digit;
+int32 value_photo;
 int32 value_mV;
 char char_received;  //to sign in it the recieved character 
 uint8 SendBytesFlag = 0;  //internal variable
@@ -50,35 +51,43 @@ CY_ISR(ISR_ADC)
     if(SendBytesFlag==1)
     {
         ADC_DelSig_StopConvert();
-        AMux_Select(0);
+        AMux_Select(0); //select channel of photoresistor
         ADC_DelSig_StartConvert();
-        value_digit = ADC_DelSig_Read32();
-        if(value_digit < 0)
-            value_digit = 0;
-        if(value_digit > 65535)
-            value_digit = 65535;
-        value_mV = ADC_DelSig_CountsTo_mVolts(value_digit);
+        value_photo = ADC_DelSig_Read32();
+        if(value_photo < 0)
+            value_photo = 0;
+        if(value_photo > 65535)
+            value_photo = 65535;
+        value_mV = ADC_DelSig_CountsTo_mVolts(value_photo);
   
-        DataBuffer[1]=value_digit>>8;
-        DataBuffer[2]=value_digit & 0xFF;        
+        DataBuffer[1]=value_photo>>8;
+        DataBuffer[2]=value_photo & 0xFF;        
         
-        if(value_mV < 1500) //we choose a brightness treshold
+        if(value_mV < THRESHOLD) 
         {
             ADC_DelSig_StopConvert();
-            AMux_Select(1);
-            ADC_DelSig_StartConvert();
-            brightness_level=ADC_DelSig_Read32();  
-            PWM_Red_Led_Start();
-            PWM_Red_Led_WriteCompare((brightness_level)/255);
+            AMux_Select(1);            
+            ADC_DelSig_StartConvert(); 
+            brightness_level= ADC_DelSig_Read32();
+              if(brightness_level < 0)
+              brightness_level = 0;
+              if(brightness_level > 65535)
+              brightness_level = 65535;
+           brightness_level=(brightness_level*255)/65535;
+           PWM_Red_Led_Start();
+           PWM_Red_Led_WriteCompare(brightness_level);
+           
+        DataBuffer[3] = brightness_level >> 8;
+        DataBuffer[4] = brightness_level & 0xFF;
         }
         else
         {
             PWM_Red_Led_Stop();
             PWM_Red_Led_WriteCompare(0);
-        }      
+        }  
         
-        sprintf(DataBuffer, "Sample: %ld mV\r\n", value_mV);
-        PacketReadyFlag = 1;
+        sprintf(DataBuffer, "Sample: %ld mV \r\n", value_mV);
+        PacketReadyFlag = 1;    
     }
     if (SendBytesFlag==0)
     {
