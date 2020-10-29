@@ -1,0 +1,6 @@
+;----------------RX8 packet structure ----------------------------
+;Header = {0xA0};
+;Data = {4 bytes int 32: MSB Photoresistor, LSB Photoresistor, MSB Potentiometer, LSB Potentiometer}
+;Tail = {0xC0}; 
+;-----------------------------------------------------------------
+rx8 [h=A0] @1Photoresistor @0Photoresistor @1Potentiometer @0Potentiometer [t=C0]

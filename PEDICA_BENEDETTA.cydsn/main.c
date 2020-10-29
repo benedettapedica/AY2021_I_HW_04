@@ -10,27 +10,26 @@
 */
 #include "project.h"
 #include "InterruptRoutines.h"
+#include "Functions.h"
 
 int main(void)
 {
     CyGlobalIntEnable; 
     
-    ADC_DelSig_Start();
-    Timer_Start();
-    UART_Start();
-    PWM_Red_Led_Start();
-    
-    timer_clock_Start();
-    Clock_PWM_Start();    
+    UART_Start(); //initializing the UART peripherals
     
     isr_UART_StartEx(ISR_UART);
     isr_ADC_StartEx(ISR_ADC); 
+    
+    //setting the mediated values variables to zero
+    SumValuePhoto=0;  
+    SumBrightnessLevel=0;
     
     //HEADER and TAIL are set up
     DataBuffer[0] = HEADER; 
     DataBuffer[BUFFER_SIZE-1] = TAIL;
     
-    clock_flag=0;
+    clock_flag=0;       //initialize clock flag
     SendBytesFlag = 0;  //initialize send flag
     
          
@@ -38,8 +37,11 @@ int main(void)
     {
          if((SendBytesFlag==1)&&(clock_flag==1))
         {
+            SendBytes();
             UART_PutArray(DataBuffer,BUFFER_SIZE);  //transmit the bytes
             clock_flag= 0; 
+            SumValuePhoto=0;
+            SumBrightnessLevel=0;
         }
       
     }

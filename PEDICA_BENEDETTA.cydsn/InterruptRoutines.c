@@ -9,6 +9,7 @@
 */
 #include "InterruptRoutines.h"
 #include "project.h"
+#include "Functions.h"
 
 int32 value_photo;   //to sign in it the photoresistor sample
 uint8 char_received;  //to sign in it the recieved character 
@@ -26,6 +27,7 @@ CY_ISR(ISR_UART)
         case 'b':
             SendBytesFlag = 1;
             Blue_LED_Write(ON);   //begin sampling sensors, onboard LED on
+            StartPeripherals();
             break;
         
         case 'S':
@@ -43,14 +45,14 @@ CY_ISR(ISR_UART)
 
 CY_ISR(ISR_ADC) 
 {
-    Timer_ReadStatusRegister();
     clock_flag=1;
+    
+    Timer_ReadStatusRegister();  //bringing the interrupt line low
     
     if (SendBytesFlag==1) 
     {
-        ADC_DelSig_StopConvert();
         AMux_Select(PHOTORESISTOR); //select channel of photoresistor
-        ADC_DelSig_StartConvert();
+        
         value_photo = ADC_DelSig_Read32();  //saving sampled value
                 
         //values are normalized in the allowed range
@@ -58,28 +60,22 @@ CY_ISR(ISR_ADC)
             value_photo = ADC_MIN;
         if(value_photo > ADC_MAX)
             value_photo = ADC_MAX;
+        
+        SumValuePhoto= SumValuePhoto+value_photo; //used to do a cumulative sum of the sample and then mediate them
 
-        //The value is written on the array to send 
-        DataBuffer[1]=value_photo>>8;
-        DataBuffer[2]=value_photo & 0xFF;     
         
         if (value_photo <= THRESHOLD)  //if we go below a certain threshold
          {
-            ADC_DelSig_StopConvert();
             AMux_Select(POTENTIOMETER);     //switch AMux to channel of Potentiometer  
-            ADC_DelSig_StartConvert();
-            
+                     
             brightness_level= ADC_DelSig_Read32(); //sample from Potentiometer the value of brightness
         
             if(brightness_level < ADC_MIN)
             brightness_level = ADC_MIN;
             if(brightness_level > ADC_MAX)
             brightness_level = ADC_MIN;
-   
-            DataBuffer[3]= brightness_level>>8;  //putting in the DataBuffer string the value of MSB of brightness level
-            DataBuffer[4]= brightness_level & 0xFF;  //putting in the DataBuffer string the value of LSB of brightness level
             
-            PWM_Red_Led_WriteCompare((brightness_level)/257); //divide by 257 to rescale because ADC is 16bit but PWM is 8bit
+            SumBrightnessLevel= SumBrightnessLevel+brightness_level;  //again mediating the value obtained for more robustness
             
         }
         
@@ -93,7 +89,7 @@ CY_ISR(ISR_ADC)
     }
     else
     {
-        PWM_Red_Led_WriteCompare(0);
+        StopPeripherals();  //if letter s is inserted, stop all the peripherals 
     }
 }
 /* [] END OF FILE */

@@ -18,11 +18,6 @@
 <v>.\BORTOLOTTI_CRISTIANO.cydsn\BORTOLOTTI_CRISTIANO.cyprj</v>
 <v>.\BURCHIELLI_DAVIDE.cydsn\BURCHIELLI_DAVIDE.cyprj</v>
 <v>.\CAVICCHIOLI_MATTEO.cydsn\CAVICCHIOLI_MATTEO.cyprj</v>
-<v>.\FASSINA_GABRIELE.cydsn\FASSINA_GABRIELE.cyprj</v>
-<v>.\GALUZZI_GIACOMO.cydsn\GALUZZI_GIACOMO.cyprj</v>
-<v>.\GAROFALO_DANIELA.cydsn\GAROFALO_DANIELA.cyprj</v>
-<v>.\MAESTRONI_MARCO.cydsn\MAESTRONI_MARCO.cyprj</v>
-<v>.\PAPPOLLA_MARGHERITA.cydsn\PAPPOLLA_MARGHERITA.cyprj</v>
 <v>.\PEDICA_BENEDETTA.cydsn\PEDICA_BENEDETTA.cyprj</v>
 <v>.\PIRELLI_ALESSANDRO.cydsn\PIRELLI_ALESSANDRO.cyprj</v>
 <v>.\RESCALLI_ANDREA.cydsn\RESCALLI_ANDREA.cyprj</v>
@@ -46,11 +41,6 @@
 <wrkspc_dependency project="BORTOLOTTI_CRISTIANO.cydsn\BORTOLOTTI_CRISTIANO.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
 <wrkspc_dependency project="BURCHIELLI_DAVIDE.cydsn\BURCHIELLI_DAVIDE.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
 <wrkspc_dependency project="CAVICCHIOLI_MATTEO.cydsn\CAVICCHIOLI_MATTEO.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
-<wrkspc_dependency project="FASSINA_GABRIELE.cydsn\FASSINA_GABRIELE.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
-<wrkspc_dependency project="GALUZZI_GIACOMO.cydsn\GALUZZI_GIACOMO.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
-<wrkspc_dependency project="GAROFALO_DANIELA.cydsn\GAROFALO_DANIELA.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
-<wrkspc_dependency project="MAESTRONI_MARCO.cydsn\MAESTRONI_MARCO.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
-<wrkspc_dependency project="PAPPOLLA_MARGHERITA.cydsn\PAPPOLLA_MARGHERITA.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
 <wrkspc_dependency project="PEDICA_BENEDETTA.cydsn\PEDICA_BENEDETTA.cyprj" dependency="..\..\..\OneDrive - Politecnico di Milano\Laboratorio di Tecnologie Elettroniche\PSoC_AnnotationLibrary\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
 <wrkspc_dependency project="PIRELLI_ALESSANDRO.cydsn\PIRELLI_ALESSANDRO.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
 <wrkspc_dependency project="RESCALLI_ANDREA.cydsn\RESCALLI_ANDREA.cyprj" dependency="..\..\..\Documents\PSoC Creator\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj" />
