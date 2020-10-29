@@ -19,6 +19,7 @@ CY_ISR(ISR_UART)
     if (UART_ReadRxStatus() == UART_RX_STS_FIFO_NOTEMPTY)
     {
     char_received = UART_GetChar();
+    
     switch(char_received)  //setting flags based on UART command received
     {
         case 'B':
@@ -89,7 +90,7 @@ CY_ISR(ISR_ADC)
             DataBuffer[4]= 0x00; 
         }
       
-}
+    }
     else
     {
         PWM_Red_Led_WriteCompare(0);

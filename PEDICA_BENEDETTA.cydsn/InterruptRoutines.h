@@ -1,11 +1,8 @@
 /* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * File .h where all the MACROs are defined,
+ * Functions of both ISRs are declared through MACRO,
+ * Flags for the clock and for the byte sending are declared,
+ * The array of the packet sent is declared.
  *
  * ========================================
 */
@@ -37,8 +34,8 @@
     
     uint8_t DataBuffer[BUFFER_SIZE];  //array of the packet that is sent
     
-    volatile uint8 SendBytesFlag;
-    volatile uint8 clock_flag;
+    volatile uint8 SendBytesFlag;   //flag=1 when right char is recieved
+    volatile uint8 clock_flag;     //flag=1 1 every 100ms (timer interrupt)
      
 #endif
 
