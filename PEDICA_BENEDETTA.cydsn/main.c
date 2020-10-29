@@ -1,8 +1,9 @@
 /* ========================================
 *   \file main.c
 *   \Main file for Assignment 04- Smart Lamp prototype
-*   
-*
+*   In this main file all the devices are initialized,
+*   the header and the tail of the message sent are defined 
+*   and the message is transmitted.
 *
 *   \author Benedetta Pedica 
 * ========================================
@@ -29,16 +30,16 @@ int main(void)
     DataBuffer[0] = HEADER; 
     DataBuffer[BUFFER_SIZE-1] = TAIL;
     
-     
     clock_flag=0;
     SendBytesFlag = 0;  //initialize send flag
-      
+    
+         
     for(;;)
     {
-         if((SendBytesFlag)&&(clock_flag))
+         if((SendBytesFlag==1)&&(clock_flag==1))
         {
-            UART_PutArray(DataBuffer,BUFFER_SIZE);
-            clock_flag= 0;
+            UART_PutArray(DataBuffer,BUFFER_SIZE);  //transmit the bytes
+            clock_flag= 0; 
         }
       
     }
