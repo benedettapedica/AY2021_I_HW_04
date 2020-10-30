@@ -1,7 +1,8 @@
 /* ========================================
  *
  * File .h where all the MACROs are defined,
- * Flags for the clock and for the byte sending are declared,
+ * the functions are defined, and the
+ * Flags for the clock and for the byte sending are declared.
  * The array of the packet sent is declared.
  * Two int32 variables are declared to be used to mediate the value
  * sampled by the photoresistor (SumValuePhoto) and the potentiometer
@@ -47,6 +48,8 @@ int32 SumBrightnessLevel;
 void StartPeripherals(void); 
 
 void StopPeripherals(void);
+
+void SetValue (void);
 
 void SendBytes(void);
 

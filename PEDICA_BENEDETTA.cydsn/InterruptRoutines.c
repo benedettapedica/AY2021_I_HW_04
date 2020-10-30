@@ -64,7 +64,7 @@ CY_ISR(ISR_ADC)
         SumValuePhoto= SumValuePhoto+value_photo; //used to do a cumulative sum of the sample and then mediate them
 
         
-        if (value_photo <= THRESHOLD)  //if we go below a certain threshold
+        if (value_photo < THRESHOLD)  //if we go below a certain threshold
          {
             AMux_Select(POTENTIOMETER);     //switch AMux to channel of Potentiometer  
                      

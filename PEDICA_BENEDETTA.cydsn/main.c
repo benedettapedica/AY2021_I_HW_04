@@ -37,6 +37,7 @@ int main(void)
     {
          if((SendBytesFlag==1)&&(clock_flag==1))
         {
+            SetValue();
             SendBytes();
             UART_PutArray(DataBuffer,BUFFER_SIZE);  //transmit the bytes
             clock_flag= 0; 

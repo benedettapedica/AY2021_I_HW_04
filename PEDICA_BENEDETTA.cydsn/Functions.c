@@ -8,9 +8,6 @@
 #include "Functions.h"
 #include "InterruptRoutines.h"
 
-volatile int32 MeanPhotoValue; 
-volatile int32 MeanBrightnessLevel;
-
 void StartPeripherals() //Start peripherals function
 {
     ADC_DelSig_Start();
@@ -30,14 +27,22 @@ void StopPeripherals()  //Stop peripherals function
     
 }
 
-void SendBytes()
+
+volatile int32 MeanPhotoValue; 
+volatile int32 MeanBrightnessLevel;
+
+void SetValue()
 {
     //the sampled values are mediated over 10 samples for more robustness
     MeanPhotoValue= SumValuePhoto/10;
+    
     MeanBrightnessLevel= SumBrightnessLevel/10;
 
     PWM_Red_Led_WriteCompare(MeanBrightnessLevel/257);  //setting duty cycle of the PWM through the potentiometer samples
-    
+}
+
+void SendBytes()
+{
     //The value is written on the array to send 
     DataBuffer[1]= MeanPhotoValue >> 8;
     DataBuffer[2]= MeanPhotoValue & 0xFF;   
